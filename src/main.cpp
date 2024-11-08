@@ -98,7 +98,12 @@ void program_logic() {
   bidirectional_timer(&button_ms, digitalRead(CONFIG_BUTTON_PIN) == CONFIG_BUTTON_PUSH_DIR);
 
   //  Debounced button signal is pressed
-  if(button_ms == CONFIG_BUTTON_PUSH_MS || (button_ms % CONFIG_BUTTON_REPEAT_MS == 0 && button_ms >= 0)) {
+  if(button_ms == CONFIG_BUTTON_PUSH_MS) {
+    lockWindows();
+  }
+
+  //  Open circuit protection
+  if(button_ms % CONFIG_BUTTON_REPEAT_MS == 0 && button_ms >= 0) {
     lockWindows();
   }
 }
