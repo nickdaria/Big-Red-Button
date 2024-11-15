@@ -18,7 +18,7 @@
 #define CONFIG_BUTTON_PUSH_DIR  HIGH
 #define CONFIG_BUTTON_PUSH_MS   30
 
-//  Open circuit repeat
+//  Open circuit repeat (0 to disable)
 #define CONFIG_BUTTON_REPEAT_MS 1000
 
 //  LED
@@ -103,7 +103,7 @@ void program_logic() {
   }
 
   //  Open circuit protection
-  if(button_ms % CONFIG_BUTTON_REPEAT_MS == 0 && button_ms >= 0) {
+  if(button_ms % CONFIG_BUTTON_REPEAT_MS == 0 && button_ms >= 0 && CONFIG_BUTTON_REPEAT_MS != 0) {
     lockWindows();
   }
 }
